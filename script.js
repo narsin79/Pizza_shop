@@ -4,15 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const cartTotal = document.getElementById('cart-total');
   let total = 0;
 
-  const cartItems = {}; // Object to store items grouped by category
+  let cartItems = {}; // Object to store items grouped by category
 
   addToCartButtons.forEach(button => {
     button.addEventListener('click', function() {
       const category = this.getAttribute('data-category');
       const name = this.getAttribute('data-name');
       const price = parseFloat(this.getAttribute('data-price'));
+      
       total += price;
-      cartTotal.textContent = `$${total.toFixed(2)}`;
+      cartTotal.textContent = `₹${total.toFixed(2)}`; // Displaying total in rupees
 
       if (!cartItems[category]) {
         cartItems[category] = {}; // Initialize category object if it doesn't exist
@@ -51,13 +52,13 @@ document.addEventListener('DOMContentLoaded', function() {
         quantityInput.type = 'number';
         quantityInput.value = item.quantity;
         quantityInput.addEventListener('change', function() {
-          const newQuantity = parseInt(this.value);
+          const newQuantity = parseInt(this.value) || 0; // Ensure a valid integer value or default to 0
           const oldQuantity = item.quantity;
-          const pricePerItem = itemTotal / oldQuantity;
+          const pricePerItem = item.price;
           const priceDifference = pricePerItem * (newQuantity - oldQuantity);
 
           total += priceDifference;
-          cartTotal.textContent = `$${total.toFixed(2)}`;
+          cartTotal.textContent = `₹${total.toFixed(2)}`; // Displaying total in rupees
 
           item.quantity = newQuantity;
 
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         listItem.appendChild(quantityInput);
         
-        listItem.appendChild(document.createTextNode(` x ${itemName}(s) - $${itemTotal.toFixed(2)} `));
+        listItem.appendChild(document.createTextNode(` x ${itemName}(s) - ₹${itemTotal.toFixed(2)} `)); // Displaying item price in rupees
 
         // Add remove button to each item
         const removeButton = document.createElement('button');
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         removeButton.addEventListener('click', function() {
           const itemTotal = item.price * item.quantity;
           total -= itemTotal;
-          cartTotal.textContent = `$${total.toFixed(2)}`;
+          cartTotal.textContent = `₹${total.toFixed(2)}`; // Displaying total in rupees
           delete categoryItems[itemName];
           updateCart();
         });
@@ -93,9 +94,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const checkoutButton = document.getElementById('checkout-btn');
-  checkoutButton.addEventListener('click', function() {
-    alert(`Total: $${total.toFixed(2)}`);
+checkoutButton.addEventListener('click', function() {
+    alert(`Total: ₹${total.toFixed(2)}`); // Displaying total in rupees
     // Here you can implement your checkout logic, like sending data to the server.
     // For simplicity, just displaying an alert with the total.
-  });
+    total = 0; // Reset total to 0 after checkout
+    cartTotal.textContent = `₹${total.toFixed(2)}`; // Update cart total display
+    cartItemsList.innerHTML = ''; // Clear cart items list
+    cartItems = {}; // Clear cartItems object
+});
+
 });
