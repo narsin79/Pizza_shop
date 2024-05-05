@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="full-width">
-      <img src="images/top_banner.png" width="800px">  
+      <img src="top_banner.png" width="800px">  
   </div>
   <br>
 <div class="container">
@@ -17,10 +17,10 @@
   <?php
   // Sample menu items fetched from PHP array (could be retrieved from a database)
   $menuItems = [
-    ['category' => 'Pizza', 'name' => 'Margherita', 'price' => 200, 'image_src' => 'images/pizza1.jpg'],
-    ['category' => 'Pizza', 'name' => 'Pepperoni', 'price' => 300, 'image_src' => 'images/pizza2.jpg'],
-    ['category' => 'Burger', 'name' => 'Cheeseburger', 'price' => 80, 'image_src' => 'images/burger.jpg'],
-    ['category' => 'Burger', 'name' => 'Veggie Burger', 'price' => 120, 'image_src' => 'images/veg.jpg']
+    ['category' => 'Pizza', 'name' => 'Margherita', 'price' => 200, 'image_src' => 'pizza1.jpg'],
+    ['category' => 'Pizza', 'name' => 'Pepperoni', 'price' => 300, 'image_src' => 'pizza2.jpg'],
+    ['category' => 'Burger', 'name' => 'Cheeseburger', 'price' => 80, 'image_src' => 'burger.jpg'],
+    ['category' => 'Burger', 'name' => 'Veggie Burger', 'price' => 120, 'image_src' => 'veg.jpg']
 ];
 
 foreach ($menuItems as $item) {
@@ -49,7 +49,7 @@ foreach ($menuItems as $item) {
 <script src="script.js"></script>
 <br>
 <div id="footer">
-      <img src="images/footer.jpg" width="800px">  
+      <img src="footer.jpg" width="800px">  
   </div>
 </body>
 </html>
